@@ -1,0 +1,156 @@
+<Activity mc:Ignorable="sap sap2010" x:Class="Aadhar_ocr_edit_UI" mva:VisualBasic.Settings="{x:Null}" sap:VirtualizedContainerService.HintSize="514,2298" sap2010:WorkflowViewState.IdRef="Aadhar_ocr_edit_UI_1" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:mva="clr-namespace:Microsoft.VisualBasic.Activities;assembly=System.Activities" xmlns:p="http://schemas.uipath.com/workflow/activities/python" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=mscorlib" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+  <TextExpression.NamespacesForImplementation>
+    <scg:List x:TypeArguments="x:String" Capacity="22">
+      <x:String>System.Activities</x:String>
+      <x:String>System.Activities.Statements</x:String>
+      <x:String>System.Activities.Expressions</x:String>
+      <x:String>System.Activities.Validation</x:String>
+      <x:String>System.Activities.XamlIntegration</x:String>
+      <x:String>Microsoft.VisualBasic</x:String>
+      <x:String>Microsoft.VisualBasic.Activities</x:String>
+      <x:String>System</x:String>
+      <x:String>System.Collections</x:String>
+      <x:String>System.Collections.Generic</x:String>
+      <x:String>System.Data</x:String>
+      <x:String>System.Diagnostics</x:String>
+      <x:String>System.Drawing</x:String>
+      <x:String>System.IO</x:String>
+      <x:String>System.Linq</x:String>
+      <x:String>System.Net.Mail</x:String>
+      <x:String>System.Xml</x:String>
+      <x:String>System.Xml.Linq</x:String>
+      <x:String>UiPath.Core</x:String>
+      <x:String>UiPath.Core.Activities</x:String>
+      <x:String>System.Windows.Markup</x:String>
+      <x:String>UiPath.Python</x:String>
+    </scg:List>
+  </TextExpression.NamespacesForImplementation>
+  <TextExpression.ReferencesForImplementation>
+    <scg:List x:TypeArguments="AssemblyReference" Capacity="19">
+      <AssemblyReference>System.Activities</AssemblyReference>
+      <AssemblyReference>Microsoft.VisualBasic</AssemblyReference>
+      <AssemblyReference>mscorlib</AssemblyReference>
+      <AssemblyReference>System.Data</AssemblyReference>
+      <AssemblyReference>System.Data.DataSetExtensions</AssemblyReference>
+      <AssemblyReference>System</AssemblyReference>
+      <AssemblyReference>System.Drawing</AssemblyReference>
+      <AssemblyReference>System.Core</AssemblyReference>
+      <AssemblyReference>System.Xml</AssemblyReference>
+      <AssemblyReference>System.Xml.Linq</AssemblyReference>
+      <AssemblyReference>PresentationFramework</AssemblyReference>
+      <AssemblyReference>WindowsBase</AssemblyReference>
+      <AssemblyReference>PresentationCore</AssemblyReference>
+      <AssemblyReference>System.Xaml</AssemblyReference>
+      <AssemblyReference>UiPath.System.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.UiAutomation.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.Python</AssemblyReference>
+      <AssemblyReference>System.ValueTuple</AssemblyReference>
+      <AssemblyReference>System.ServiceModel</AssemblyReference>
+    </scg:List>
+  </TextExpression.ReferencesForImplementation>
+  <Sequence DisplayName="Aadhar_ocr_edit_UI" sap:VirtualizedContainerService.HintSize="494,2198" sap2010:WorkflowViewState.IdRef="Sequence_1">
+    <sap:WorkflowViewStateService.ViewState>
+      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+      </scg:Dictionary>
+    </sap:WorkflowViewStateService.ViewState>
+    <Sequence sap2010:Annotation.AnnotationText="Enter the aadhar image name in input dialog box, its convert the image into text then given the value in message box&#xA;" sap:VirtualizedContainerService.HintSize="452,2106" sap2010:WorkflowViewState.IdRef="Sequence_4">
+      <Sequence.Variables>
+        <Variable x:TypeArguments="x:String" Name="file_path" />
+        <Variable x:TypeArguments="ui:GenericValue" Name="input" />
+      </Sequence.Variables>
+      <sap:WorkflowViewStateService.ViewState>
+        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+          <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+        </scg:Dictionary>
+      </sap:WorkflowViewStateService.ViewState>
+      <ui:InputDialog Options="{x:Null}" DisplayName="Input Dialog" sap:VirtualizedContainerService.HintSize="410,92" sap2010:WorkflowViewState.IdRef="InputDialog_1" IsPassword="False" Label="Enter your Aadhar image name" Title="Image name">
+        <ui:InputDialog.Result>
+          <OutArgument x:TypeArguments="ui:GenericValue">[input]</OutArgument>
+        </ui:InputDialog.Result>
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+            <x:Boolean x:Key="IsPinned">False</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </ui:InputDialog>
+      <Assign sap:VirtualizedContainerService.HintSize="410,60" sap2010:WorkflowViewState.IdRef="Assign_2">
+        <Assign.To>
+          <OutArgument x:TypeArguments="x:String">[file_path]</OutArgument>
+        </Assign.To>
+        <Assign.Value>
+          <InArgument x:TypeArguments="x:String">[input.Replace("\","\\").ToString]</InArgument>
+        </Assign.Value>
+      </Assign>
+      <p:PythonScope sap2010:Annotation.AnnotationText="I declare python installed path in my system in the &quot;Python scope&quot;" DisplayName="Python Scope" sap:VirtualizedContainerService.HintSize="410,1722" sap2010:WorkflowViewState.IdRef="PythonScope_1" Path="C:/Users/Qbx-sys2/AppData/Local/Programs/Python/Python36" TargetPlatform="x64" Version="Python_36">
+        <p:PythonScope.Body>
+          <ActivityAction x:TypeArguments="x:Object">
+            <ActivityAction.Argument>
+              <DelegateInArgument x:TypeArguments="x:Object" Name="PythonEngineSessionProperty" />
+            </ActivityAction.Argument>
+            <Sequence DisplayName="Do" sap:VirtualizedContainerService.HintSize="376,1658" sap2010:WorkflowViewState.IdRef="Sequence_3">
+              <Sequence.Variables>
+                <Variable x:TypeArguments="p:PythonObject" Name="LOAD_FILE" />
+                <Variable x:TypeArguments="p:PythonObject" Name="INV_FILE" />
+                <Variable x:TypeArguments="x:Object" Name="FIRST_OUTPUT" />
+                <Variable x:TypeArguments="p:PythonObject" Name="load_2_file" />
+                <Variable x:TypeArguments="x:Object" Name="file_output_2" />
+                <Variable x:TypeArguments="p:PythonObject" Name="inv_2_output" />
+                <Variable x:TypeArguments="p:PythonObject" Name="load_3" />
+                <Variable x:TypeArguments="p:PythonObject" Name="inv_3_output" />
+                <Variable x:TypeArguments="x:Object" Name="output_3" />
+                <Variable x:TypeArguments="p:PythonObject" Name="load_4" />
+                <Variable x:TypeArguments="p:PythonObject" Name="inv_4_output" />
+                <Variable x:TypeArguments="x:Object" Name="output_4" />
+                <Variable x:TypeArguments="ui:GenericValue" Name="text" />
+              </Sequence.Variables>
+              <sap:WorkflowViewStateService.ViewState>
+                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                  <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                </scg:Dictionary>
+              </sap:WorkflowViewStateService.ViewState>
+              <p:LoadScript Code="{x:Null}" sap2010:Annotation.AnnotationText="Add the python script path&#xD;&#xA;" DisplayName="Load Python Script 1" sap:VirtualizedContainerService.HintSize="334,103" sap2010:WorkflowViewState.IdRef="LoadScript_1" Result="[LOAD_FILE]" ScriptFile="C:\Users\Qbx-sys2\AppData\Local\Programs\Python\Python36\Ui_Script1.py">
+                <sap:WorkflowViewStateService.ViewState>
+                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                    <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+                  </scg:Dictionary>
+                </sap:WorkflowViewStateService.ViewState>
+              </p:LoadScript>
+              <p:InvokeMethod DisplayName="Invoke Python Method" sap:VirtualizedContainerService.HintSize="334,22" sap2010:WorkflowViewState.IdRef="InvokeMethod_1" Instance="[LOAD_FILE]" Name="ocr_core" Parameters="[{file_path}]" Result="[INV_FILE]" />
+              <p:GetObject x:TypeArguments="x:Object" DisplayName="Get Python Object" sap:VirtualizedContainerService.HintSize="334,22" sap2010:WorkflowViewState.IdRef="GetObject`1_1" PythonObject="[INV_FILE]" Result="[FIRST_OUTPUT]" />
+              <ui:MessageBox ChosenButton="{x:Null}" Caption="Text from Aadhar Image" DisplayName="Message Box" sap:VirtualizedContainerService.HintSize="334,59" sap2010:WorkflowViewState.IdRef="MessageBox_1" Text="[FIRST_OUTPUT]" TopMost="True" />
+              <p:LoadScript Code="{x:Null}" DisplayName="Load Python Script 2" sap:VirtualizedContainerService.HintSize="334,59" sap2010:WorkflowViewState.IdRef="LoadScript_2" Result="[load_2_file]" ScriptFile="C:\Users\Qbx-sys2\AppData\Local\Programs\Python\Python36\Ui_Script2.py" />
+              <p:InvokeMethod DisplayName="Invoke Python Method" sap:VirtualizedContainerService.HintSize="334,22" sap2010:WorkflowViewState.IdRef="InvokeMethod_2" Instance="[load_2_file]" Name="is_aadhar_card" Parameters="[{FIRST_OUTPUT}]" Result="[inv_2_output]" />
+              <p:GetObject x:TypeArguments="x:Object" DisplayName="Get Python Object" sap:VirtualizedContainerService.HintSize="334,22" sap2010:WorkflowViewState.IdRef="GetObject`1_2" PythonObject="[inv_2_output]" Result="[file_output_2]" />
+              <ui:MessageBox ChosenButton="{x:Null}" Caption="Name of the Aadhar" DisplayName="Message Box" sap:VirtualizedContainerService.HintSize="334,59" sap2010:WorkflowViewState.IdRef="MessageBox_3" Text="[file_output_2]" TopMost="True" />
+              <p:LoadScript Code="{x:Null}" DisplayName="Load Python Script 3" sap:VirtualizedContainerService.HintSize="334,59" sap2010:WorkflowViewState.IdRef="LoadScript_3" Result="[load_3]" ScriptFile="C:\Users\Qbx-sys2\AppData\Local\Programs\Python\Python36\Ui_Script3.py" />
+              <p:InvokeMethod DisplayName="Invoke Python Method" sap:VirtualizedContainerService.HintSize="334,22" sap2010:WorkflowViewState.IdRef="InvokeMethod_3" Instance="[load_3]" Name="Year" Parameters="[{FIRST_OUTPUT}]" Result="[inv_3_output]" />
+              <p:GetObject x:TypeArguments="x:Object" DisplayName="Get Python Object" sap:VirtualizedContainerService.HintSize="334,22" sap2010:WorkflowViewState.IdRef="GetObject`1_3" PythonObject="[inv_3_output]" Result="[output_3]" />
+              <ui:MessageBox ChosenButton="{x:Null}" Caption="Date of birth from Aadhar image" DisplayName="Message Box" sap:VirtualizedContainerService.HintSize="334,59" sap2010:WorkflowViewState.IdRef="MessageBox_4" Text="[output_3]" TopMost="True" />
+              <p:LoadScript Code="{x:Null}" DisplayName="Load Python Script 4" sap:VirtualizedContainerService.HintSize="334,59" sap2010:WorkflowViewState.IdRef="LoadScript_4" Result="[load_4]" ScriptFile="C:\Users\Qbx-sys2\AppData\Local\Programs\Python\Python36\Ui_Script4.py" />
+              <p:InvokeMethod DisplayName="Invoke Python Method" sap:VirtualizedContainerService.HintSize="334,22" sap2010:WorkflowViewState.IdRef="InvokeMethod_4" Instance="[load_4]" Name="number" Parameters="[{FIRST_OUTPUT}]" Result="[inv_4_output]" />
+              <p:GetObject x:TypeArguments="x:Object" DisplayName="Get Python Object" sap:VirtualizedContainerService.HintSize="334,22" sap2010:WorkflowViewState.IdRef="GetObject`1_7" PythonObject="[inv_4_output]" Result="[output_4]" />
+              <ui:MessageBox ChosenButton="{x:Null}" Caption="Aadhar Number from image" DisplayName="Message Box" sap:VirtualizedContainerService.HintSize="334,59" sap2010:WorkflowViewState.IdRef="MessageBox_5" Text="[output_4]" TopMost="True" />
+              <Assign sap:VirtualizedContainerService.HintSize="334,60" sap2010:WorkflowViewState.IdRef="Assign_1">
+                <Assign.To>
+                  <OutArgument x:TypeArguments="ui:GenericValue">[text]</OutArgument>
+                </Assign.To>
+                <Assign.Value>
+                  <InArgument x:TypeArguments="ui:GenericValue">["Here Is Then Extracted Data From Then Aadhar Image"+Environment.NewLine+ file_output_2.ToString+ Environment.NewLine+ output_3.ToString+Environment.NewLine+ output_4.ToString]</InArgument>
+                </Assign.Value>
+              </Assign>
+              <ui:WriteTextFile DisplayName="Write Text File" FileName="Extracted_data.txt" sap:VirtualizedContainerService.HintSize="334,134" sap2010:WorkflowViewState.IdRef="WriteTextFile_1" Text="[Text]" />
+            </Sequence>
+          </ActivityAction>
+        </p:PythonScope.Body>
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </p:PythonScope>
+    </Sequence>
+  </Sequence>
+</Activity>
